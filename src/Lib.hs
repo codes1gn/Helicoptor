@@ -1,6 +1,6 @@
 module Lib
-    ( someFunc
+    ( helicoptorMain
     ) where
 
-someFunc :: IO ()
-someFunc = putStrLn "someFunc"
+helicoptorMain :: IO ()
+helicoptorMain = putStrLn "helicoptor set off"
