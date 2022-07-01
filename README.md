@@ -19,7 +19,9 @@ write use command here
 ```
 
 ### Design Thoughts
-This is a POC project attempt to explore the possibility that setting up a effect system for side-effects in Tensor programs.
+This is a POC project attempt to explore the possibility that
+* setting up a zoo of algebraic type system for Tensor and its operations
+* setting up a effect system for wrapping side-effects in Tensor programs.
 
 We plan to do this step-by-step:
 * build up the algebraic type system for tensor program, and probabilistic tensor
@@ -29,7 +31,8 @@ We plan to do this step-by-step:
 * trivial data types and function -> refactor with monads -> monadT for combination of monads -> algebraic effect system
 
 Here is the TODOLIST for hands-on stuffs:
-* add prim types
+* add prim types and tensor family
+* sort out design patterns with newtype, class, data.kinds, subtyping, HList
 * add "add" function for prim types
 * set up tests
 * ADT building, for tensor, (tensor is a monad with shapes in it)
@@ -39,47 +42,6 @@ Long-term todo
 * MonadT
 * AEH: read dependency injection, read zhihu.com/question/300095154 and figure out free monad and algebraic effects
 
--- | Add
---
--- Examples:
---
--- >>> add (NatNum 10) (NatNum 11)
--- NatNum 21
---
--- >>> add (RealNum 10.1) (RealNum 7.4)
--- RealNum 17.5
---
-add :: Computables -> Computables -> Computables 
-identity x = case x of
-  _ -> x + y
-
--- | Sub
---
--- Examples:
---
--- >>> sub (NatNum 10) (NatNum 11)
--- NatNum (-1)
---
--- >>> sub (RealNum 10.1) (RealNum 7.4)
--- RealNum 2.7000003
---
-sub :: Computables -> Computables -> Computables 
-sub (RealNum x) (RealNum y) = RealNum (x - y) 
-sub (NatNum x) (NatNum y) = NatNum (x - y) 
-
--- | square
---
--- Examples:
---
--- >>> square (NatNum 10)
--- NatNum 100
---
--- >>> square (RealNum 1.1)
--- RealNum 1.21
---
-square :: Computables -> Computables 
-square (RealNum x) = RealNum (x * x) 
-square (NatNum x) = NatNum (x * x) 
 
 ### Contributing
 

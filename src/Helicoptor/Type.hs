@@ -33,9 +33,6 @@ data Tensor where
   Matrix :: Dtype -> Shape -> Tensor
   Tensor :: Dtype -> Shape -> Tensor
     deriving (Show)
--- TODO  deriving (Show), is not working
--- try to fix it by standalone deriving for Show class
--- TODO newtype, data.kinds, subtyping ...
 --  | Index
 --  | Vector {
 --    dtype :: Dtype
