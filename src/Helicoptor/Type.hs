@@ -1,9 +1,18 @@
+{-# LANGUAGE GADTs #-}
+
 module Helicoptor.Type where
 
+-- | Dtype for compute
 data Dtype = Float
            | Int
   deriving (Eq, Show)
 
+-- | Shape type with less or equal then 4 Ranks
+---- Section: util functions for shape
+-- >>> D4Shape 32 16 16 32
+-- D4Shape 32 16 16 32
+-- >>> D1Shape 16
+-- D1Shape 16
 data Shape 
   = UnitShape
   | D1Shape Int
@@ -12,14 +21,33 @@ data Shape
   | D4Shape Int Int Int Int
   deriving (Eq, Show)
 
-data Tensor = Tensor {
-    dtype :: Dtype
-  , shape :: Shape }
-  deriving (Show)
-
-
----- Section: util functions for dtype
+-- | Tensor type
 --
+-- 
+-- >>> Tensor Int UnitShape
+-- Tensor Int UnitShape
+data Tensor where
+  Scalar :: Tensor
+  Index  :: Tensor
+  Vector :: Dtype -> Shape -> Tensor
+  Matrix :: Dtype -> Shape -> Tensor
+  Tensor :: Dtype -> Shape -> Tensor
+    deriving (Show)
+-- TODO  deriving (Show), is not working
+-- try to fix it by standalone deriving for Show class
+-- TODO newtype, data.kinds, subtyping ...
+--  | Index
+--  | Vector {
+--    dtype :: Dtype
+--  , shape :: Shape }
+--  | Matrix {
+--    dtype :: Dtype
+--  , shape :: Shape }
+--  | Tensor {
+--    dtype :: Dtype
+--  , shape :: Shape }
+
+
 -- | Computables Type that can be computed
 --
 -- currently, we only handles float type and int Type
@@ -50,7 +78,6 @@ assertIntType t = case t of
   _ -> False
 
 
---
 -- | getDtype
 --
 -- >>> t = Tensor Int UnitShape
@@ -72,12 +99,17 @@ assertIntType t = case t of
 getDtype :: Tensor -> Dtype
 getDtype (Tensor x _) = x
 
+-- | getShape
+--
+-- >>> t = Tensor Int (D2Shape 16 8)
+-- >>> getShape t
+-- D2Shape 16 8
+getShape :: Tensor -> Shape
+getShape Scalar = UnitShape
+getShape Index = UnitShape
+getShape (Vector _ x) = x
+getShape (Matrix _ x) = x
+getShape (Tensor _ x) = x
 
-
----- Section: util functions for shape
--- >>> D4Shape 32 16 16 32
--- D4Shape 32 16 16 32
--- >>> D1Shape 16
--- Shape 16
 
 
