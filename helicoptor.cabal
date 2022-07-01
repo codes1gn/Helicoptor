@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Helicoptor
+      Helicoptor.Math
       Helicoptor.Type
   other-modules:
       Paths_helicoptor
