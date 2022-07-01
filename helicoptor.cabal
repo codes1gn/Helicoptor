@@ -25,7 +25,8 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Helicoptor
+      Helicoptor.Type
   other-modules:
       Paths_helicoptor
   hs-source-dirs:

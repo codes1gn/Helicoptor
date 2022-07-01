@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import Helicoptor
 
 main :: IO ()
 main = helicoptorMain
