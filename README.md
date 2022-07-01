@@ -34,7 +34,10 @@ Here is the TODOLIST for hands-on stuffs:
 * set up tests
 * ADT building, for tensor, (tensor is a monad with shapes in it)
 * calibrate functions to lifted domain
-* TBD
+
+Long-term todo
+* MonadT
+* AEH: read dependency injection, read zhihu.com/question/300095154 and figure out free monad and algebraic effects
 
 ### Contributing
 

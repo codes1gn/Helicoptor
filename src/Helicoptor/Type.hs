@@ -1,9 +1,16 @@
-module Helicoptor.Type 
-    ( PrimFloat
-    ) where
+module Helicoptor.Type where
 
-
-data PrimFloat a = Float a
+-- | Square float numbers
+--
+-- Examples:
+--
+-- >>> square 4
+-- 16.0
+--
+-- >>> square (-1.1)
+-- 1.21
+square :: Float -> Float
+square x = x * x
 
 
 
